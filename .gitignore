@@ -1,0 +1,10 @@
+# Ignore
+dist/
+artifacts/
+
+# Node ecosystem
+node_modules/
+*.log
+*.debug
+
+# Ignore
