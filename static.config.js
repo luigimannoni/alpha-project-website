@@ -1,7 +1,7 @@
 import path from 'path'
 import axios from 'axios'
 
-export default {
+const Config = {
   getRoutes: async () => {
     const { data: posts } = await axios.get(
       'https://jsonplaceholder.typicode.com/posts'
@@ -33,4 +33,6 @@ export default {
     require.resolve('react-static-plugin-reach-router'),
     require.resolve('react-static-plugin-sitemap'),
   ],
-}
+};
+
+export default Config;

@@ -1,17 +1,13 @@
-name: Version Release
+name: Publish site to GH Pages
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - master
 
-jobs:                    
+jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out Git repository
@@ -20,44 +16,39 @@ jobs:
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: '14.17'
+          node-version: '15.12'
 
       - name: Cache Node modules
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.os }}-wp-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-frontend-${{ hashFiles('**/package-lock.json') }}
 
-      - name: Install node modules 
+      - name: Install node modules
         run: npm install
 
-      - name: Build Electron app
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          release: false
+      - name: Build Static
 
-      - name: Store Build 
+      - name: Store Build
         uses: actions/upload-artifact@v2
         with:
-          name: electron-build
+          name: frontend-build
           path: |
-            electron/output/*.exe
-            electron/output/*.AppImage
+            dist/*
 
-  release:
+  publish:
     runs-on: ubuntu-latest
     needs: [build]
 
     steps:
-      - name: Get node artifacts
+      - name: Get artifacts
         uses: actions/download-artifact@v2
         with:
-          name: electron-build
-          path: electron/output      
+          name: frontend-build
+          path: dist
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          files: |
-            electron/output/*
+          branch: gh-pages
+          folder: dist

@@ -6,12 +6,15 @@
     "stage": "react-static build --staging",
     "build": "react-static build",
     "analyze": "react-static build --analyze",
-    "serve": "serve dist -p 3000"
+    "serve": "serve dist -p 3000",
+    "postinstall": "npx browserslist@latest --update-db"
   },
   "dependencies": {
     "@reach/router": "^1.3.4",
     "axios": "^0.21.1",
+    "bootstrap": "5.1.0",
     "react": "^16.14.0",
+    "react-bootstrap": "^2.0.0-beta.6",
     "react-dom": "^16.14.0",
     "react-hot-loader": "^4.13.0",
     "react-static": "^7.5.1",

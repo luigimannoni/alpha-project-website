@@ -1,10 +1,13 @@
-# Ignore
+# Ignore React
 dist/
 artifacts/
 
 # Node ecosystem
+tmp/
 node_modules/
 *.log
 *.debug
 
-# Ignore
+# Ignore editor stuff
+.vscode
+.idea
