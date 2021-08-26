@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'components/Router'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
-import './Navigation.scss';
-
 import logo from '../assets/logo.png';
 
 export default function Navigation() {
