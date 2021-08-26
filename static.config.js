@@ -1,29 +1,39 @@
 import path from 'path'
-import axios from 'axios'
 
 const Config = {
-  getRoutes: async () => {
-    const { data: posts } = await axios.get(
-      'https://jsonplaceholder.typicode.com/posts'
-    )
-
-    return [
-      {
-        path: '/blog',
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
-          template: 'src/containers/Post',
-          getData: () => ({
-            post,
-          }),
-        })),
-      },
-    ]
-  },
   plugins: [
+    require.resolve('react-static-plugin-sass'),
+    [
+      require.resolve('react-static-plugin-favicons'),
+      {
+        inputFile: path.resolve(__dirname, 'src/assets/logo.png'),
+        configuration: {
+          appName: 'The Alpha Project',
+          appShortName: 'Alpha Project',
+          appDescription: 'The home of everything related to pre-release versions of World of Warcraft',
+          developerName: null,
+          developerURL: null,
+          dir: 'ltr',
+          lang: 'en-US',
+          background: '#fff',
+          theme_color: '#fff',
+          display: 'standalone',
+          orientation: 'portrait',
+          start_url: '/',
+          loadManifestWithCredentials: false,
+          icons: {
+            android: true,
+            appleIcon: true,
+            appleStartup: true,
+            coast: true,
+            favicons: true,
+            firefox: true,
+            windows: true,
+            yandex: true,
+          },
+        }
+      }
+    ],
     [
       require.resolve('react-static-plugin-source-filesystem'),
       {

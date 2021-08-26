@@ -2,16 +2,34 @@ import React from 'react';
 import { Link } from 'components/Router'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
+import './Navigation.scss';
+
+import logo from '../assets/logo.png';
+
 export default function Navigation() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar
+      collapseOnSelect
+      sticky="top"
+      expand="lg"
+      bg="dark"
+      variant="dark"
+      className="py-0"
+    >
       <Container>
-      <Navbar.Brand><Link to="/">Alpha Project</Link></Navbar.Brand>
+      <Navbar.Brand>
+        <Link to="/">
+          <img
+            className="navigation--logo"
+            src={logo}
+            alt="The Alpha Project"
+          />
+        </Link>
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link><Link to="/about">About</Link></Nav.Link>
-          <Nav.Link><Link to="/blog">Blog</Link></Nav.Link>
+          <Link role="button" className="nav-link" to="/about">About</Link>
           <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

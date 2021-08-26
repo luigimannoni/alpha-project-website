@@ -1,3 +1,9 @@
+@import '~bootstrap/scss/bootstrap';
+
+:root {
+  --spacer: 2rem;
+}
+
 * {
   scroll-behavior: smooth;
 }
