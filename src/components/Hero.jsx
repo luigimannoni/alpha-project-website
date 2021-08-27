@@ -34,11 +34,11 @@ export default function Hero() {
                 className="px-5"
               >
                 <FaGithub className="me-2" />
-                Server Repository
+                Clone Server
               </Button>
 
               <Button
-                href="https://archive.org/download/World_of_Warcraft_Client_and_Installation_Archive/ISO/"
+                href="https://github.com/The-Alpha-Project/Alpha-Launcher/releases"
                 variant="outline-secondary"
                 className="px-5"
               >

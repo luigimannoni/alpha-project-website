@@ -44,7 +44,7 @@ export default function Navigation() {
           <Nav.Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://discord.gg/RzBMAKU"
+            href="https://github.com/The-Alpha-Project"
           >
             <FaGithub />
           </Nav.Link>
@@ -58,10 +58,10 @@ export default function Navigation() {
           <Nav.Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://discord.gg/RzBMAKU"
+            href="https://ko-fi.com/R6R21LO82"
           >
             <SiKoFi className="me-2" />
-            Donate
+            Support on Ko-fi
           </Nav.Link>
 
         </Navbar.Collapse>
