@@ -27,9 +27,12 @@ $spacers: (
   10: $spacer * 12,
 );
 
-$primary:       $green;
-$secondary:     $gold;
-$dark:          $darkblue;
+$primary: $green;
+$secondary: $gold;
+$dark: $darkblue;
+
+$body-bg: $darkblue;
+$body-color: #fff;
 
 // Imports
 
@@ -38,3 +41,4 @@ $dark:          $darkblue;
 @import './sass/base';
 @import './sass/navigation';
 @import './sass/video-background';
+@import './sass/image-background';

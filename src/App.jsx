@@ -4,6 +4,7 @@ import { Router } from './components/Router';
 
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
+import BackgroundContainer from './containers/BackgroundContainer';
 
 // Styles
 import './app.scss';
@@ -13,13 +14,15 @@ function App() {
     <Root>
       <Hero />
       <Navigation />
-      <div className="content">
-        <React.Suspense fallback={<em>Loading...</em>}>
-          <Router>
-            <Routes path="*" />
-          </Router>
-        </React.Suspense>
-      </div>
+      <BackgroundContainer>
+        <div className="content">
+          <React.Suspense fallback={<em>Loading...</em>}>
+            <Router>
+              <Routes path="*" />
+            </Router>
+          </React.Suspense>
+        </div>
+      </BackgroundContainer>
     </Root>
   );
 }

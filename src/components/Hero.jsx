@@ -3,8 +3,10 @@ import React from 'react';
 import {
   Col, Container, Button, Row,
 } from 'react-bootstrap';
-import { FaDiscord, FaGithub } from 'react-icons/fa';
+import { FaGithub, FaCloudDownloadAlt } from 'react-icons/fa';
+import { IoMdRocket } from 'react-icons/io';
 
+import Logo from './Logo';
 import VideoBackground from './VideoBackground';
 
 export default function Hero() {
@@ -12,23 +14,46 @@ export default function Hero() {
     <section className="position-relative">
       <VideoBackground />
       <Container className="py-10 position-relative">
-        <Row className="p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center wow__dialog">
-          <Col lg={7} className="p-3 p-lg-5 pt-lg-3">
-            <h1 className="display-4 fw-bold lh-1">The Alpha Project</h1>
+        <Row className="p-4 align-items-center wow__dialog pt-7 text-center">
+          <Col>
+            <Row className="justify-content-center">
+              <Col className="position-absolute top-0 start-50 translate-middle" xs={5} sm={5} md={3} lg={2}>
+                <div className="p-4 rounded-circle">
+                  <Logo />
+                </div>
+              </Col>
+            </Row>
+            <h1 className="fw-bold text-uppercase">The Alpha Project</h1>
             <p className="lead">The home of everything related to pre-release versions of World of Warcraft</p>
-            <div className="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-              <Button variant="outline-primary" className="px-5">
-                <FaGithub />
-                {' '}
-                Download Server
+            <div className="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3">
+              <Button
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/The-Alpha-Project/alpha-core"
+                variant="outline-primary"
+                className="px-5"
+              >
+                <FaGithub className="me-2" />
+                Server Repository
               </Button>
-              <Button variant="primary" className="px-5">
-                <FaDiscord />
-                {' '}
-                Join on Discord
+
+              <Button
+                href="https://archive.org/download/World_of_Warcraft_Client_and_Installation_Archive/ISO/"
+                variant="outline-secondary"
+                className="px-5"
+              >
+                <IoMdRocket className="me-2" />
+                Alpha Launcher
               </Button>
-              <Button variant="outline-secondary" className="px-5">Ipsum</Button>
-              <Button variant="secondary" className="px-5">Ipsum</Button>
+
+              <Button
+                href="https://archive.org/download/World_of_Warcraft_Client_and_Installation_Archive/ISO/"
+                variant="outline-secondary"
+                className="px-5"
+              >
+                <FaCloudDownloadAlt className="me-2" />
+                0.5.3 Client
+              </Button>
             </div>
           </Col>
         </Row>
