@@ -1,3 +1,8 @@
 {
-  "extends": "react-app"
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb/whitespace",
+    "react-app"
+  ]
 }

@@ -1,43 +1,40 @@
-@import '~bootstrap/scss/bootstrap';
+// Variables here
+$gold: #ffc231;
+$green: #98ca3e;
+$darkblue: #080d21;
+
+$bg-dialog: $darkblue;
+
+// BS overrides if needed here
+$border-radius: 0;
+$border-radius-sm: .15rem;
+$border-radius-lg: .25rem;
+$border-radius-pill: 50rem;
 
 $spacer: 1rem;
 
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4.5,
+  7: $spacer * 6,
+  8: $spacer * 7.5,
+  9: $spacer * 9,
+  10: $spacer * 12,
+);
+
+$primary:       $green;
+$secondary:     $gold;
+$dark:          $darkblue;
+
+// Imports
+
+@import '~bootstrap/scss/bootstrap';
+
+@import './sass/base';
 @import './sass/navigation';
-
-* {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
-    Helvetica, Arial, 'Lucida Grande', sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-  color: #108db8;
-  font-weight: bold;
-}
-
-img {
-  max-width: 100%;
-}
-
-nav {
-  width: 100%;
-  background: #108db8;
-
-  a {
-    color: white;
-    padding: 1rem;
-    display: inline-block;
-  }
-}
-
-.content {
-  padding: 1rem;
-}
+@import './sass/video-background';

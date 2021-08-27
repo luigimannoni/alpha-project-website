@@ -1,12 +1,12 @@
-import React from 'react'
-import { Root, Routes } from 'react-static'
-import { Router } from 'components/Router'
+import React from 'react';
+import { Root, Routes } from 'react-static';
+import { Router } from './components/Router';
 
-import Navigation from './components/Navigation'
-import Hero from './components/Hero'
+import Navigation from './components/Navigation';
+import Hero from './components/Hero';
 
 // Styles
-import './app.scss'
+import './app.scss';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         </React.Suspense>
       </div>
     </Root>
-  )
+  );
 }
 
-export default App
+export default App;
