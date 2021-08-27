@@ -25,9 +25,10 @@ jobs:
           key: ${{ runner.os }}-node-frontend-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install node modules
-        run: npm install
+        run: yarn install
 
       - name: Build Static
+        run: yarn build
 
       - name: Store Build
         uses: actions/upload-artifact@v2
