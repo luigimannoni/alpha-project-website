@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'components/Router'
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import {
+  Container,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Badge
+} from 'react-bootstrap';
 
 import logo from '../assets/logo.png';
 
@@ -10,13 +16,13 @@ export default function Navigation() {
       collapseOnSelect
       sticky="top"
       expand="lg"
-      bg="dark"
-      variant="dark"
+      bg="primary"
+      variant="light"
       className="py-0"
     >
       <Container>
       <Navbar.Brand>
-        <Link to="/">
+        <Link className="p-1" to="/">
           <img
             className="navigation--logo"
             src={logo}
@@ -28,16 +34,23 @@ export default function Navigation() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
           <Link role="button" className="nav-link" to="/about">About</Link>
-          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-          </NavDropdown>
+          <Nav.Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://discord.gg/RzBMAKU"
+          >
+              Join Discord
+          </Nav.Link>
         </Nav>
         <Nav>
-          <Nav.Link href="">Discord</Nav.Link>
+          <NavDropdown title="Server status" id="collasible-nav-dropdown">
+            <NavDropdown.Item href="#">
+              Kalidar 1.12 <Badge pill bg="success">Online</Badge>
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#">
+              0.5.3 PTR <Badge pill bg="warning">Locked</Badge>
+            </NavDropdown.Item>
+          </NavDropdown>
         </Nav>
       </Navbar.Collapse>
       </Container>
