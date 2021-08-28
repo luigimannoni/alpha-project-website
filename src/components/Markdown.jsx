@@ -8,8 +8,8 @@ export default function Markdown({ file }) {
 
   useEffect(() => {
     async function getMD() {
-      const text = await axios.get(file);
-      setMarkdown(text);
+      const { data } = await axios.get(file);
+      setMarkdown(data);
     }
     getMD();
   }, [file]);
