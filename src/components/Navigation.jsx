@@ -3,7 +3,6 @@ import {
   Container,
   Nav,
   Navbar,
-  Badge,
 } from 'react-bootstrap';
 import { FaGithub, FaDiscord } from 'react-icons/fa';
 import { SiKoFi } from 'react-icons/si';

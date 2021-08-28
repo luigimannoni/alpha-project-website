@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Container, Row, Col, Accordion,
+  Container, Row, Col,
 } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
 import Markdown from '../components/Markdown';
