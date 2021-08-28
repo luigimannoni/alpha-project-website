@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Root, Head, Routes, addPrefetchExcludes,
+  Root, Head, Routes,
 } from 'react-static';
 import { Router } from './components/Router';
 
@@ -10,8 +10,6 @@ import BackgroundContainer from './containers/BackgroundContainer';
 
 // Styles
 import './app.scss';
-
-addPrefetchExcludes(['*']);
 
 export default function App() {
   return (
