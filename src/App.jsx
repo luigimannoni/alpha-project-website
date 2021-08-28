@@ -1,6 +1,7 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import { Root, Routes, addPrefetchExcludes } from 'react-static';
+import {
+  Root, Head, Routes,
+} from 'react-static';
 import { Router } from './components/Router';
 
 import Navigation from './components/Navigation';
@@ -10,16 +11,13 @@ import BackgroundContainer from './containers/BackgroundContainer';
 // Styles
 import './app.scss';
 
-// Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(['install']);
-
 export default function App() {
   return (
     <Root>
-      <Helmet>
+      <Head>
         <meta charSet="utf-8" />
         <title>The Alpha Project</title>
-      </Helmet>
+      </Head>
       <Hero />
       <Navigation />
       <BackgroundContainer>
