@@ -36,7 +36,7 @@ export default function Navigation() {
           <Nav>
 
             <Nav.Link>
-              <ServerStatus name="Kalidar 1.12" realmlist="logon1.thealphaproject.eu" />
+              <ServerStatus name="Kalidar 1.12" realmlist="http://logon1.thealphaproject.eu" />
             </Nav.Link>
             <Nav.Link>
               <ServerStatus name="PTR 0.5.3" />

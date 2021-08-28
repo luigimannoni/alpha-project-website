@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'react-bootstrap';
+import axios from 'axios';
 
 export default function ServerStatus({ name, realmlist }) {
   const [online, setOnline] = useState(false);
@@ -9,11 +10,13 @@ export default function ServerStatus({ name, realmlist }) {
   // or players online rather than basing assumption on the realmlist
   // webserver responding and being alive
   useEffect(() => {
-    if (realmlist) {
-      fetch(realmlist)
-        .then((res) => res.status)
-        .then((status) => setOnline(status !== 0));
+    async function getStatus() {
+      if (realmlist) {
+        const { status } = await axios.get(realmlist);
+        setOnline(status !== 0);
+      }
     }
+    getStatus();
   }, [realmlist]);
 
   return (
