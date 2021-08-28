@@ -17,7 +17,7 @@ export default function Navigation() {
     <Navbar
       collapseOnSelect
       sticky="top"
-      expand="lg"
+      expand="md"
       bg="dark"
       variant="dark"
       className="py-0"
