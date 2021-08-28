@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Root, Routes } from 'react-static';
-// import LoadingOverlay from 'react-loading-overlay';
+import { Root, Routes, addPrefetchExcludes } from 'react-static';
 import { Router } from './components/Router';
 
 import Navigation from './components/Navigation';
@@ -10,6 +9,9 @@ import BackgroundContainer from './containers/BackgroundContainer';
 
 // Styles
 import './app.scss';
+
+// Any routes that start with 'dynamic' will be treated as non-static routes
+addPrefetchExcludes(['install']);
 
 export default function App() {
   return (

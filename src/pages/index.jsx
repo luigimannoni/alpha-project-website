@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Container, Row, Col,
 } from 'react-bootstrap';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/youtube';
 import Markdown from '../components/Markdown';
 
 import MD_MAIN from '../content/homepage/main.md';

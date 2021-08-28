@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'path';
 
 const Config = {
   plugins: [
@@ -31,8 +31,8 @@ const Config = {
             windows: true,
             yandex: true,
           },
-        }
-      }
+        },
+      },
     ],
     [
       require.resolve('react-static-plugin-source-filesystem'),
