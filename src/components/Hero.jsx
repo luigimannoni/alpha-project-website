@@ -29,7 +29,6 @@ function HeroComponent() {
             <div className="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3">
               <Button
                 target="_blank"
-                rel="noopener noreferrer"
                 href="https://github.com/The-Alpha-Project/alpha-core"
                 variant="outline-primary"
                 className="px-5"
@@ -39,6 +38,7 @@ function HeroComponent() {
               </Button>
 
               <Button
+                target="_blank"
                 href="https://github.com/The-Alpha-Project/Alpha-Launcher/releases"
                 variant="outline-secondary"
                 className="px-5"
@@ -48,6 +48,8 @@ function HeroComponent() {
               </Button>
 
               <Button
+                target="_blank"
+                rel="noopener noreferrer"
                 href="https://archive.org/download/World_of_Warcraft_Client_and_Installation_Archive/ISO/"
                 variant="outline-secondary"
                 className="px-5"
