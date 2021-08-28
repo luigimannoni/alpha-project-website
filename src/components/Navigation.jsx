@@ -30,40 +30,43 @@ export default function Navigation() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link role="button" className="nav-link" to="/about">About</Link>
+            <Link role="button" className="nav-link" to="/install">How to install</Link>
+            <Link role="button" className="nav-link" to="/contribute">Contribute</Link>
           </Nav>
-          <Nav.Link>
-            <span className="pe-2 text-white">Kalidar 1.12</span>
-            <Badge pill bg="success">Online</Badge>
-          </Nav.Link>
-          <Nav.Link>
-            <span className="pe-2 text-white">PTR 0.5.3</span>
-            <Badge pill bg="warning">Online</Badge>
-          </Nav.Link>
+          <Nav>
 
-          <Nav.Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/The-Alpha-Project"
-          >
-            <FaGithub />
-          </Nav.Link>
-          <Nav.Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://discord.gg/RzBMAKU"
-          >
-            <FaDiscord />
-          </Nav.Link>
-          <Nav.Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://ko-fi.com/R6R21LO82"
-          >
-            <SiKoFi className="me-2" />
-            Support on Ko-fi
-          </Nav.Link>
+            <Nav.Link>
+              <span className="pe-2 text-white">Kalidar 1.12</span>
+              <Badge pill bg="success">Online</Badge>
+            </Nav.Link>
+            <Nav.Link>
+              <span className="pe-2 text-white">PTR 0.5.3</span>
+              <Badge pill bg="warning">Online</Badge>
+            </Nav.Link>
 
+            <Nav.Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/The-Alpha-Project"
+            >
+              <FaGithub size={18} />
+            </Nav.Link>
+            <Nav.Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://discord.gg/RzBMAKU"
+            >
+              <FaDiscord size={18} />
+            </Nav.Link>
+            <Nav.Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://ko-fi.com/R6R21LO82"
+            >
+              <SiKoFi size={24} className="me-2" />
+              Support on Ko-fi
+            </Nav.Link>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

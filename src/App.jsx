@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Root, Routes } from 'react-static';
 import { Router } from './components/Router';
 
@@ -9,9 +10,13 @@ import BackgroundContainer from './containers/BackgroundContainer';
 // Styles
 import './app.scss';
 
-function App() {
+export default function App() {
   return (
     <Root>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>The Alpha Project</title>
+      </Helmet>
       <Hero />
       <Navigation />
       <BackgroundContainer>
@@ -26,5 +31,3 @@ function App() {
     </Root>
   );
 }
-
-export default App;
