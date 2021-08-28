@@ -5,7 +5,7 @@ import {
 } from 'react-bootstrap';
 import { FaGithub, FaCloudDownloadAlt } from 'react-icons/fa';
 import { IoMdRocket } from 'react-icons/io';
-import { Location } from './Router';
+import { useLocation } from './Router';
 
 import Logo from './Logo';
 import VideoBackground from './VideoBackground';
@@ -66,14 +66,11 @@ function HeroComponent() {
 }
 
 export default function Hero() {
-  return (
-    <Location>
-      {({ location }) => {
-        if (location.pathname === '/') {
-          return <HeroComponent />;
-        }
-        return null;
-      }}
-    </Location>
-  );
+  const { pathname } = useLocation();
+
+  if (pathname === '/') {
+    return (<HeroComponent />);
+  }
+
+  return null;
 }

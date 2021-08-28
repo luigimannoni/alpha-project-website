@@ -8,13 +8,15 @@ export default function Markdown({ file }) {
 
   useEffect(() => {
     async function getMD() {
-      const { data } = await axios.get(file);
+      const module = await import(`../content/${file}.md`);
+      const {data} = await axios.get(module.default);
       setMarkdown(data);
     }
     getMD();
   }, [file]);
 
   return (
+    // <p>{markdown}</p>
     <ReactMarkdown>{markdown}</ReactMarkdown>
   );
 }

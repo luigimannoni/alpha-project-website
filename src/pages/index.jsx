@@ -5,9 +5,6 @@ import {
 import ReactPlayer from 'react-player/youtube';
 import Markdown from '../components/Markdown';
 
-import MD_MAIN from '../content/homepage/main.md';
-import MD_FAQS from '../content/homepage/faqs.md';
-
 export default function IndexPage() {
   return (
     <Container>
@@ -18,7 +15,7 @@ export default function IndexPage() {
       </Row>
       <Row className="py-1">
         <Col lg={6}>
-          <Markdown file={MD_MAIN} />
+          <Markdown file="homepage/main" />
         </Col>
         <Col lg={6}>
           {/* Dodgykebaabs video */}
@@ -35,7 +32,7 @@ export default function IndexPage() {
       </Row>
       <Row className="py-1">
         <Col>
-          <Markdown file={MD_FAQS} />
+          <Markdown file="homepage/faqs" />
         </Col>
       </Row>
     </Container>
