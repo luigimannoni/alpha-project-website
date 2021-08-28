@@ -10,6 +10,7 @@ import { SiKoFi } from 'react-icons/si';
 
 import { Link } from './Router';
 import Logo from './Logo';
+import ServerStatus from './ServerStatus';
 
 export default function Navigation() {
   return (
@@ -36,12 +37,10 @@ export default function Navigation() {
           <Nav>
 
             <Nav.Link>
-              <span className="pe-2 text-white">Kalidar 1.12</span>
-              <Badge pill bg="success">Online</Badge>
+              <ServerStatus name="Kalidar 1.12" realmlist="logon1.thealphaproject.eu" />
             </Nav.Link>
             <Nav.Link>
-              <span className="pe-2 text-white">PTR 0.5.3</span>
-              <Badge pill bg="warning">Online</Badge>
+              <ServerStatus name="PTR 0.5.3" />
             </Nav.Link>
 
             <Nav.Link

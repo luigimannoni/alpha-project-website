@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Root, Routes } from 'react-static';
+// import LoadingOverlay from 'react-loading-overlay';
 import { Router } from './components/Router';
 
 import Navigation from './components/Navigation';
@@ -21,7 +22,7 @@ export default function App() {
       <Navigation />
       <BackgroundContainer>
         <div className="content">
-          <React.Suspense fallback={<em>Loading...</em>}>
+          <React.Suspense fallback={<em>Loading</em>}>
             <Router>
               <Routes path="*" />
             </Router>

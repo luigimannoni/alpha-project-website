@@ -18,5 +18,5 @@ Logo.propTypes = {
 };
 
 Logo.defaultProps = {
-  className: 'alpha-logo',
+  className: 'alpha-logo img-fluid',
 };

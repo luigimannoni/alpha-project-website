@@ -3,6 +3,7 @@
   overflow: hidden;
   background: url(assets/bg-loading-gryphon.jpg) center no-repeat;
   background-size: cover;
+  min-height: 100vh;
 
   &::after {
     content: '';
@@ -11,7 +12,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    background: linear-gradient(rgba($darkblue, .95) , rgba($darkblue, .45));
+    background: linear-gradient(rgba($darkblue, .95) , rgba($darkblue, .65));
     z-index: 0;
   }
 
