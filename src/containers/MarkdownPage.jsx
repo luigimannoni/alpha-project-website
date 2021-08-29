@@ -1,25 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Head } from 'react-static';
 import {
   Container, Row, Col,
 } from 'react-bootstrap';
-import { useLocation } from '../components/Router';
 
-export default function MarkdownPage() {
-  const { pathname } = useLocation();
-  const file = pathname.replace('/', '');
-  const [markdown, setMarkdown] = useState('');
-  const [title, setTitle] = useState('Loading');
-
-  useEffect(() => {
-    async function getMD() {
-      const {attributes, react} = await import(`../content/${file}.md`);
-      setMarkdown(react);
-      setTitle(attributes.title);
-    }
-    getMD();
-  }, [file]);
-
+export default function MarkdownPage({ title, children }) {
   return (
     <>
       <Head>
@@ -30,7 +16,7 @@ export default function MarkdownPage() {
           <Container>
             <Row className="py-1 justify-content-center">
               <Col xs={10} md={8} lg={6}>
-                {markdown}
+                {children}
               </Col>
             </Row>
           </Container>
@@ -39,3 +25,8 @@ export default function MarkdownPage() {
     </>
   );
 }
+
+MarkdownPage.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+};

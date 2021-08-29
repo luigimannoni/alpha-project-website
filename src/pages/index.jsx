@@ -3,7 +3,8 @@ import {
   Container, Row, Col,
 } from 'react-bootstrap';
 import ReactPlayer from 'react-player/youtube';
-import Markdown from '../components/Markdown';
+import { react as MdMain } from '../content/homepage/main.md';
+import { react as MdFaqs } from '../content/homepage/faqs.md';
 
 export default function IndexPage() {
   return (
@@ -15,7 +16,7 @@ export default function IndexPage() {
       </Row>
       <Row className="py-1">
         <Col lg={6}>
-          <Markdown file="homepage/main" />
+          <MdMain />
         </Col>
         <Col lg={6}>
           {/* Dodgykebaabs video */}
@@ -32,7 +33,7 @@ export default function IndexPage() {
       </Row>
       <Row className="py-1">
         <Col>
-          <Markdown file="homepage/faqs" />
+          <MdFaqs />
         </Col>
       </Row>
     </Container>
