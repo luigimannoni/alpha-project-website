@@ -56,12 +56,9 @@ export default function CreateAccountPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(userData);
     const {username, password} = userData;
 
     const data = register(username, password);
-
-    console.log(userCaptcha);
     
     if(!validateCaptcha()){
       setAlertCaptcha(true);
@@ -86,10 +83,8 @@ export default function CreateAccountPage() {
           password: ''
         });
         setUserCaptcha('');
-        console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
       });
     }
 

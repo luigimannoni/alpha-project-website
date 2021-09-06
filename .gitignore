@@ -13,3 +13,5 @@ server/node_modules
 # Ignore editor stuff
 .vscode
 .idea
+
+.env
