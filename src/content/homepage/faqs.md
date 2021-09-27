@@ -1,3 +1,7 @@
+---
+title: Faqs
+---
+
 **Q:** Are there any online servers?
 
 **A:** Yes, we have a 0.5.3 server and a 1.12 one.

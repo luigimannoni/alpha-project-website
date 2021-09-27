@@ -30,8 +30,37 @@ export default function Navigation() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link role="button" className="nav-link" to="/install">How to install</Link>
-            <Link role="button" className="nav-link" to="/contribute">Contribute</Link>
+
+            <Link role="button" className="nav-link" to="/">Home</Link>
+            <Link role="button" className="nav-link" to="/createAccount">Create Account</Link>
+            <Link role="button" className="nav-link" to="/faq">Faq</Link>
+            <Link role="button" className="nav-link" to="/downloads">Downloads</Link>
+
+            <Nav.Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/The-Alpha-Project"
+            >
+              <FaGithub size={18} className="me-2" />
+              Github
+            </Nav.Link>
+            <Nav.Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://discord.gg/RzBMAKU"
+            >
+              <FaDiscord size={18} className="me-2" />
+              Discord
+            </Nav.Link>
+            <Nav.Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://ko-fi.com/R6R21LO82"
+            >
+              <SiKoFi size={24} className="me-2" />
+              Support on Ko-fi
+            </Nav.Link>
+          
           </Nav>
           <Nav>
 
@@ -39,10 +68,10 @@ export default function Navigation() {
               <ServerStatus name="Kalidar 1.12" realmlist="http://logon1.thealphaproject.eu" />
             </Nav.Link>
             <Nav.Link>
-              <ServerStatus name="PTR 0.5.3" />
+              <ServerStatus name="PTR 0.5.3" realmlist="http://logon1.thealphaproject.eu" />
             </Nav.Link>
 
-            <Nav.Link
+            {/* <Nav.Link
               target="_blank"
               rel="noopener noreferrer"
               href="https://github.com/The-Alpha-Project"
@@ -63,7 +92,7 @@ export default function Navigation() {
             >
               <SiKoFi size={24} className="me-2" />
               Support on Ko-fi
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

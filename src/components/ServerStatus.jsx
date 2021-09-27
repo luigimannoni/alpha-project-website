@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'react-bootstrap';
-import axios from 'axios';
 
 export default function ServerStatus({ name, realmlist }) {
   const [online, setOnline] = useState(false);
@@ -12,8 +11,12 @@ export default function ServerStatus({ name, realmlist }) {
   useEffect(() => {
     async function getStatus() {
       if (realmlist) {
-        const { status } = await axios.get(realmlist);
-        setOnline(status !== 0);
+        await fetch(realmlist, { mode: 'no-cors' }).then((r) => {
+          setOnline(true);
+        })
+          .catch((e) => {
+            setOnline(false);
+          });
       }
     }
     getStatus();

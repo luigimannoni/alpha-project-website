@@ -35,3 +35,8 @@ a:not(.btn) {
     color: $white;
   }
 }
+
+.center-content{
+  display: flex;
+  justify-content: center;
+}
