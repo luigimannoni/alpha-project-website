@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
@@ -11,9 +12,12 @@ const app = express();
 
 // @TODO: bodyParser.json() is deprecated, seek for a replacement/solution.
 app.use(bodyParser.json());
+// @TODO: restrict cors only from trusted sources
 app.use(cors({
   origin: '*',
 }));
+
+app.use(express.static(path.join(__dirname, 'dist')));
 
 const PORT = process.env.PORT || 3500;
 
@@ -25,8 +29,15 @@ const connection = mysql.createConnection({
 });
 
 connection.connect((error) => {
-  if (error) throw error;
-  console.log('DB connection established');
+  if (error) {
+    if (process.env.NODE_ENV === 'production') {
+      throw error;
+    } else {
+      console.warn('Running in dev mode without DB connection ⚠️');
+    }
+  } else {
+    console.log('DB connection established');
+  }
 });
 
 // Routes
