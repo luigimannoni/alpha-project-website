@@ -8,6 +8,8 @@ const mysql = require('mysql');
 const app = express();
 
 // Middlewares
+
+// @TODO: bodyParser.json() is deprecated, seek for a replacement/solution.
 app.use(bodyParser.json());
 app.use(cors({
   origin: '*',
@@ -29,7 +31,11 @@ connection.connect((error) => {
 
 // Routes
 app.post('/api/account/createAccount', (req, res) => {
+  // @TODO: needs a server side captcha/recaptcha check
+
   const { username, s, v } = req.body;
+
+  // @TODO: get the actual list of all supported chars from the core server
   const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
   const sql = `INSERT INTO account
