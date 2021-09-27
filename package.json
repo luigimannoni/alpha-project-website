@@ -7,7 +7,7 @@
     "build": "react-static build",
     "export": "yarn build && react-static export",
     "analyze": "react-static build --analyze",
-    "serve": "serve dist -p 3000"
+    "serve": "nodemon server.js"
   },
   "dependencies": {
     "@reach/router": "^1.3.4",
