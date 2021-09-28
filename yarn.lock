@@ -4812,6 +4812,11 @@ expand-template@^2.0.3:
   resolved "https://registry.npmjs.org/expand-template/-/expand-template-2.0.3.tgz"
   integrity sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==
 
+express-recaptcha@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/express-recaptcha/-/express-recaptcha-5.0.2.tgz#17de212c165489462ab85e1e07c4ea81661d5e5f"
+  integrity sha512-111xDDJo1HPVwcU+hG1X3vOzRFWx/Yp9pyQ7qOVjkSfRXh2qeU9tLo1I0HBa1oLrB8rQlyxLUI9XXP5iUePnnw==
+
 express@^4.16.3, express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.npmjs.org/express/-/express-4.17.1.tgz"
