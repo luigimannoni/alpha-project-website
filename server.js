@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -102,7 +103,10 @@ app.post('/api/account/create', (req, res) => {
         throw new Error(`Invalid submission from ${ip}. Username is too long ${username}`);
       }
     })
-    .catch((error) => res.json(error));
+    .catch((error) => {
+      // Output to error log
+      console.error(error);
+    });
 });
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
