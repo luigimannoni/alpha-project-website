@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -9,9 +8,9 @@ const mysql = require('mysql');
 const app = express();
 
 // Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// @TODO: bodyParser.json() is deprecated, seek for a replacement/solution.
-app.use(bodyParser.json());
 // @TODO: restrict cors only from trusted sources
 app.use(cors({
   origin: '*',
