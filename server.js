@@ -10,13 +10,13 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// @TODO: restrict cors only from trusted sources
-app.use(cors({
-  origin: '*',
-}));
-
 app.use(express.static(path.join(__dirname, 'dist')));
+
+// Set CORS on production only
+const origin = process.env.NODE_ENV === 'production' ? /thealphaproject\.eu$/ : '*';
+app.use(cors({
+  origin,
+}));
 
 const PORT = process.env.PORT || 3500;
 
@@ -39,34 +39,41 @@ connection.connect((error) => {
   }
 });
 
-// Routes
-app.post('/api/account/createAccount', (req, res) => {
-  // @TODO: needs a server side captcha/recaptcha check
+app.post('/api/account/create', (req, res) => {
+  // Block all failed recaptchas
+  const url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${req.body.token}`;
 
-  const { username, s, v } = req.body;
+  fetch(url, {
+    method: 'post',
+  })
+    .then((response) => response.json())
+    .then((response) => res.json({ response }))
+    .catch((error) => res.json({ error }));
 
-  // @TODO: get the actual list of all supported chars from the core server
-  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  // const { username, s, v } = req.body;
 
-  const sql = `INSERT INTO account
-            (
-                username, s, v
-            )
-            VALUES
-            (
-                ?, ?, ?
-            )`;
+  // // @TODO: get the actual list of all supported chars from the core server
+  // const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-  if (!username.match(format)) {
-    connection.query(sql, [username, s, v], (err, rows, fields) => {
-      if (err) throw err;
-      res.send('Your account was successfully created. Please set your realmlist to `set realmlist logon1.thealphaproject.eu`! Have fun!');
-    });
-  } else if (username.match(format)) {
-    res.send('Remove odd characters to continue!');
-  } else if (username.length > 16) {
-    res.send('The given Username is too long! Please use a username with a maximum of 16 characters!');
-  }
+  // const sql = `INSERT INTO account
+  //           (
+  //               username, s, v
+  //           )
+  //           VALUES
+  //           (
+  //               ?, ?, ?
+  //           )`;
+
+  // if (!username.match(format)) {
+  //   connection.query(sql, [username, s, v], (err, rows, fields) => {
+  //     if (err) throw err;
+  //     res.send('Your account was successfully created. Please set your realmlist to `set realmlist logon1.thealphaproject.eu`! Have fun!');
+  //   });
+  // } else if (username.match(format)) {
+  //   res.send('Remove odd characters to continue!');
+  // } else if (username.length > 16) {
+  //   res.send('The given Username is too long! Please use a username with a maximum of 16 characters!');
+  // }
 });
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));

@@ -16,8 +16,8 @@ export default function IndexPage() {
         </Row>
       </div>
       <Row className="py-1">
-      <div className="center-content">
-        <Col lg={6}>
+        <div className="center-content">
+          <Col lg={6}>
             {/* Dodgykebaabs video */}
             <div className="ratio ratio-16x9">
               <ReactPlayer
@@ -35,7 +35,7 @@ export default function IndexPage() {
             <MdMain />
           </Col>
         </div>
-        
+
       </Row>
     </Container>
   );
