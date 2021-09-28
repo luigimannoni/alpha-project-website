@@ -50,30 +50,30 @@ app.post('/api/account/create', (req, res) => {
     .then((response) => res.json({ response }))
     .catch((error) => res.json({ error }));
 
-  // const { username, s, v } = req.body;
+  const { username, s, v } = req.body;
 
-  // // @TODO: get the actual list of all supported chars from the core server
-  // const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  // @TODO: get the actual list of all supported chars from the core server
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-  // const sql = `INSERT INTO account
-  //           (
-  //               username, s, v
-  //           )
-  //           VALUES
-  //           (
-  //               ?, ?, ?
-  //           )`;
+  const sql = `INSERT INTO account
+            (
+                username, s, v
+            )
+            VALUES
+            (
+                ?, ?, ?
+            )`;
 
-  // if (!username.match(format)) {
-  //   connection.query(sql, [username, s, v], (err, rows, fields) => {
-  //     if (err) throw err;
-  //     res.send('Your account was successfully created. Please set your realmlist to `set realmlist logon1.thealphaproject.eu`! Have fun!');
-  //   });
-  // } else if (username.match(format)) {
-  //   res.send('Remove odd characters to continue!');
-  // } else if (username.length > 16) {
-  //   res.send('The given Username is too long! Please use a username with a maximum of 16 characters!');
-  // }
+  if (!username.match(format)) {
+    connection.query(sql, [username, s, v], (err, rows, fields) => {
+      if (err) throw err;
+      res.send('Your account was successfully created. Please set your realmlist to `set realmlist logon1.thealphaproject.eu`! Have fun!');
+    });
+  } else if (username.match(format)) {
+    res.send('Remove odd characters to continue!');
+  } else if (username.length > 16) {
+    res.send('The given Username is too long! Please use a username with a maximum of 16 characters!');
+  }
 });
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));

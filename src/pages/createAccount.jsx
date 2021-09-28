@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   FiUser,
   FiLock,
   FiUserPlus,
 } from 'react-icons/fi';
-import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { register } from 'js-wowemu-auth';
 
 import axios from 'axios';
@@ -19,6 +19,8 @@ import {
 import MarkdownPage from '../containers/MarkdownPage';
 
 export default function CreateAccountPage() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const [userData, setUserData] = useState({
     username: '',
     password: '',
@@ -26,8 +28,22 @@ export default function CreateAccountPage() {
 
   const [token, setToken] = useState('');
   const [userCaptcha, setUserCaptcha] = useState('');
-  const [alertCaptcha, setAlertCaptcha] = useState(false);
   const [alertRequiredInputs, setalertRequiredInputs] = useState(false);
+
+  // You can use useEffect to trigger the verification as soon as the component being loaded
+  useEffect(() => {
+    const verify = async () => {
+      if (!executeRecaptcha) {
+        console.log('Execute recaptcha not yet available');
+      }
+
+      const tok = await executeRecaptcha('register');
+      setToken(tok);
+    };
+
+    verify();
+    // Do whatever you want with the token
+  }, [executeRecaptcha]);
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -35,14 +51,6 @@ export default function CreateAccountPage() {
       ...userData,
       [e.target.name]: e.target.value.trim(),
     });
-  };
-
-  const validateCaptcha = () => {
-    if (token === userCaptcha) {
-      return true;
-    }
-
-    return false;
   };
 
   const renderAlert = (type, message) => (
@@ -57,20 +65,26 @@ export default function CreateAccountPage() {
 
     const data = register(username, password);
 
-    if (!validateCaptcha()) {
-      setAlertCaptcha(true);
-    } else if ((username === '' || password === '') && validateCaptcha()) {
+    if ((username === '' || password === '')) {
       setalertRequiredInputs(true);
-      setAlertCaptcha(false);
     } else {
       setalertRequiredInputs(false);
-      setAlertCaptcha(false);
-      axios.post('/api/account/create', {
-        username,
-        s: data.salt,
-        v: data.verifier,
+      fetch('/api/account/create', {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          s: data.salt,
+          v: data.verifier,
+          token,
+        }),
       })
-        .then((response) => {
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
           setUserData({
             username: '',
             password: '',
@@ -78,6 +92,7 @@ export default function CreateAccountPage() {
           setUserCaptcha('');
         })
         .catch((error) => {
+          console.log(error);
         });
     }
   };
@@ -117,18 +132,13 @@ export default function CreateAccountPage() {
           <Row>
             <Col lg={2} xs={3}>
               <div className="captcha">
-                <GoogleReCaptcha
-                  onVerify={(tok) => {
-                    setToken(tok);
-                  }}
-                />
+                {/* <button tyoe="button" onClick={handleVerify}>Verify recaptcha</button> */}
               </div>
             </Col>
           </Row>
         </Form.Group>
         <Form.Group className="mb-3" />
 
-        {alertCaptcha && renderAlert('danger', 'Invalid Captcha')}
         {alertRequiredInputs && renderAlert('danger', 'All inputs are required!')}
 
         <Button className="create-button" onClick={handleSubmit} type="submit">

@@ -14,11 +14,10 @@ import './app.scss';
 
 export default function App() {
   return (
-    <Root>
-      <GoogleReCaptchaProvider
-        reCaptchaKey={process.env.RECAPTCHA_SITE_KEY}
-      >
-
+    <GoogleReCaptchaProvider
+      reCaptchaKey="6LfhfpYcAAAAADrn5icXGPExVLjdAy6HIwImZqLd"
+    >
+      <Root>
         <Head>
           <meta charSet="utf-8" />
           <title>The Alpha Project</title>
@@ -34,7 +33,7 @@ export default function App() {
             </React.Suspense>
           </div>
         </BackgroundContainer>
-      </GoogleReCaptchaProvider>
-    </Root>
+      </Root>
+    </GoogleReCaptchaProvider>
   );
 }
