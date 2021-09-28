@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   FiUser,
@@ -20,7 +21,7 @@ import {
 import MarkdownPage from '../../containers/MarkdownPage';
 
 const MESSAGES = {
-  ACCOUNT_CREATED: 'Your account was successfully created. Please set your realmlist to <code>set realmlist logon1.thealphaproject.eu</code>! Have fun!',
+  ACCOUNT_CREATED: 'Your account was successfully created. Please set your realmlist to <em class="fw-bold">set realmlist logon1.thealphaproject.eu</em>! Have fun!',
   NAME_INVALID_SYMBOLS: 'Username contains invalid symbols, please use only letters and numbers (A-Z, 0-9)!',
   NAME_INVALID_LENGTH: 'The given Username is too long! Please use a username with a maximum of 16 characters!',
   ERR_OFFLINE: 'Server is unreacheable or you\'re offline.',
@@ -64,7 +65,7 @@ export default function CreateAccountPage() {
 
   const renderAlert = (type, message) => (
     <Alert className="alert-form" variant={type}>
-      {message}
+      <span dangerouslySetInnerHTML={{ __html: message }} />
     </Alert>
   );
 

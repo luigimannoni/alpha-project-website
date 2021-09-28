@@ -7,7 +7,8 @@ To run a dev server locally please do a `yarn install` and then run it as usual 
 
 ## Build and serve through express
 
-Simply run `yarn serve`.
+Run `yarn build` to generate a static export of the frontend, all the generated files will sit on the `dist` folder.
+Afterwards simply type `yarn serve` to launch the express backend.
 
 If developing the account creation page requires also:
 - a Mysql service with a 1.12 mangos realm database up and running, if you need one you can import the [official sql](https://raw.githubusercontent.com/cmangos/mangos-classic/master/sql/base/realmd.sql) on your self-hosted mysql and modify the `.env` file accordingly.
