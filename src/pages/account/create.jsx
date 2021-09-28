@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   FiUser,
   FiMail,
@@ -17,12 +17,13 @@ import {
   Col,
   Alert,
 } from 'react-bootstrap';
-import MarkdownPage from '../containers/MarkdownPage';
+import MarkdownPage from '../../containers/MarkdownPage';
 
 const MESSAGES = {
-  ACCOUNT_CREATED: 'Your account was successfully created. Please set your realmlist to `set realmlist logon1.thealphaproject.eu`! Have fun!',
-  NAME_INVALID_SYMBOLS: 'Remove odd characters to continue!',
+  ACCOUNT_CREATED: 'Your account was successfully created. Please set your realmlist to <code>set realmlist logon1.thealphaproject.eu</code>! Have fun!',
+  NAME_INVALID_SYMBOLS: 'Username contains invalid symbols, please use only letters and numbers (A-Z, 0-9)!',
   NAME_INVALID_LENGTH: 'The given Username is too long! Please use a username with a maximum of 16 characters!',
+  ERR_OFFLINE: 'Server is unreacheable or you\'re offline.',
 };
 
 export default function CreateAccountPage() {
@@ -35,23 +36,23 @@ export default function CreateAccountPage() {
   });
 
   const [token, setToken] = useState('');
-  const [userCaptcha, setUserCaptcha] = useState('');
+  const [alertBanner, setAlertBanner] = useState(false);
   const [alertRequiredInputs, setalertRequiredInputs] = useState(false);
+
+  const regenerateCaptcha = useCallback(async () => {
+    if (!executeRecaptcha) {
+      return;
+    }
+
+    const tok = await executeRecaptcha('register');
+    setToken(tok);
+  }, [executeRecaptcha]);
 
   // You can use useEffect to trigger the verification as soon as the component being loaded
   useEffect(() => {
-    const verify = async () => {
-      if (!executeRecaptcha) {
-        console.log('Execute recaptcha not yet available');
-      }
-
-      const tok = await executeRecaptcha('register');
-      setToken(tok);
-    };
-
-    verify();
+    regenerateCaptcha();
     // Do whatever you want with the token
-  }, [executeRecaptcha]);
+  }, [executeRecaptcha, regenerateCaptcha]);
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -71,7 +72,7 @@ export default function CreateAccountPage() {
     e.preventDefault();
     const { username, password, email } = userData;
 
-    const data = register(username, password);
+    const srp = register(username, password);
 
     if ((username === '' || password === '' || email === '')) {
       setalertRequiredInputs(true);
@@ -86,23 +87,38 @@ export default function CreateAccountPage() {
         body: JSON.stringify({
           username,
           email,
-          s: data.salt,
-          v: data.verifier,
+          s: srp.salt,
+          v: srp.verifier,
           token,
         }),
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          setUserData({
-            username: '',
-            email: '',
-            password: '',
-          });
-          setUserCaptcha('');
+          if (data.error) {
+            setAlertBanner({
+              type: 'danger',
+              message: MESSAGES[data.error],
+            });
+          } else {
+            setUserData({
+              username: '',
+              email: '',
+              password: '',
+            });
+
+            setAlertBanner({
+              type: 'success',
+              message: MESSAGES[data.success],
+            });
+          }
+
+          regenerateCaptcha();
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
+          setAlertBanner({
+            type: 'danger',
+            message: err.error ? MESSAGES[err.error] : MESSAGES.ERR_OFFLINE,
+          });
         });
     }
   };
@@ -122,6 +138,7 @@ export default function CreateAccountPage() {
             value={userData.username}
             autoComplete="off"
             type="text"
+            maxLength="16"
           />
         </Form.Group>
 
@@ -152,23 +169,16 @@ export default function CreateAccountPage() {
             type="password"
           />
         </Form.Group>
-        <Form.Group className="mb-1" controlId="captcha">
-          <Row>
-            <Col lg={2} xs={3}>
-              <div className="captcha">
-                {/* <button tyoe="button" onClick={handleVerify}>Verify recaptcha</button> */}
-              </div>
-            </Col>
-          </Row>
+
+        <Form.Group>
+          {alertBanner && renderAlert(alertBanner.type, alertBanner.message)}
+          {alertRequiredInputs && renderAlert('danger', 'All inputs are required!')}
+
+          <Button className="create-button" onClick={handleSubmit} type="submit">
+            <FiUserPlus className="me-2" />
+            Create Account
+          </Button>
         </Form.Group>
-        <Form.Group className="mb-3" />
-
-        {alertRequiredInputs && renderAlert('danger', 'All inputs are required!')}
-
-        <Button className="create-button" onClick={handleSubmit} type="submit">
-          <FiUserPlus className="me-2" />
-          Create Account
-        </Button>
 
       </Form>
 

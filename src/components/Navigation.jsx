@@ -32,7 +32,7 @@ export default function Navigation() {
           <Nav className="me-auto">
 
             <Link role="button" className="nav-link" to="/">Home</Link>
-            <Link role="button" className="nav-link" to="/createAccount">Create Account</Link>
+            <Link role="button" className="nav-link" to="/account/create">Create Account</Link>
             <Link role="button" className="nav-link" to="/faq">Faq</Link>
             <Link role="button" className="nav-link" to="/downloads">Downloads</Link>
 
@@ -60,7 +60,7 @@ export default function Navigation() {
               <SiKoFi size={24} className="me-2" />
               Support on Ko-fi
             </Nav.Link>
-          
+
           </Nav>
           <Nav>
 
