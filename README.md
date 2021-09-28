@@ -7,4 +7,10 @@ To run a dev server locally please do a `yarn install` and then run it as usual 
 
 ## Build and serve through express
 
-Run `yarn serve`, requires the [alpha core](https://github.com/The-Alpha-Project/alpha-core) Mysql service to be running and an `.env` file setup, please refer to the comments in `.env.template`
+Simply run `yarn serve`.
+
+If developing the account creation page requires also:
+- a Mysql service with a 1.12 mangos realm database up and running, if you need one you can import the [official sql](https://raw.githubusercontent.com/cmangos/mangos-classic/master/sql/base/realmd.sql) on your self-hosted mysql and modify the `.env` file accordingly.
+- a Google Recaptcha key with `localhost` whitelisted, grab one [from here](https://www.google.com/recaptcha/admin/create)
+
+Please refer to the comments in `.env.template` for more guidance.

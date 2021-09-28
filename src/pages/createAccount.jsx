@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FiUser,
+  FiMail,
   FiLock,
   FiUserPlus,
 } from 'react-icons/fi';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { register } from 'js-wowemu-auth';
 
-import axios from 'axios';
+import fetch from 'isomorphic-fetch';
 
 import {
   Form,
@@ -18,11 +19,18 @@ import {
 } from 'react-bootstrap';
 import MarkdownPage from '../containers/MarkdownPage';
 
+const MESSAGES = {
+  ACCOUNT_CREATED: 'Your account was successfully created. Please set your realmlist to `set realmlist logon1.thealphaproject.eu`! Have fun!',
+  NAME_INVALID_SYMBOLS: 'Remove odd characters to continue!',
+  NAME_INVALID_LENGTH: 'The given Username is too long! Please use a username with a maximum of 16 characters!',
+};
+
 export default function CreateAccountPage() {
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [userData, setUserData] = useState({
     username: '',
+    email: '',
     password: '',
   });
 
@@ -61,11 +69,11 @@ export default function CreateAccountPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { username, password } = userData;
+    const { username, password, email } = userData;
 
     const data = register(username, password);
 
-    if ((username === '' || password === '')) {
+    if ((username === '' || password === '' || email === '')) {
       setalertRequiredInputs(true);
     } else {
       setalertRequiredInputs(false);
@@ -77,6 +85,7 @@ export default function CreateAccountPage() {
         },
         body: JSON.stringify({
           username,
+          email,
           s: data.salt,
           v: data.verifier,
           token,
@@ -87,6 +96,7 @@ export default function CreateAccountPage() {
           console.log(data);
           setUserData({
             username: '',
+            email: '',
             password: '',
           });
           setUserCaptcha('');
@@ -113,7 +123,21 @@ export default function CreateAccountPage() {
             autoComplete="off"
             type="text"
           />
+        </Form.Group>
 
+        <Form.Group className="mb-3" controlId="email">
+          <Form.Label>
+            <FiMail className="me-2" />
+            Email address
+          </Form.Label>
+          <Form.Control
+            onChange={handleInputChange}
+            name="email"
+            value={userData.email}
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            autoComplete="off"
+            type="email"
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="password">
